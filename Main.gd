@@ -1,6 +1,7 @@
 extends Node
 
 @export var mob_scene: PackedScene
+@export var bullet_scene: PackedScene
 var score
 
 # Called when the node enters the scene tree for the first time.
@@ -27,7 +28,7 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	get_tree().call_group("mobs", "queue_free")
-	$Music.play()
+	# $Music.play()
 
 
 func _on_mob_timer_timeout():
@@ -64,3 +65,23 @@ func _on_score_timer_timeout():
 func _on_start_timer_timeout():
 	$MobTimer.start()
 	$ScoreTimer.start()
+
+
+func spawn_bullet(position):
+	# Create a new instance of the Bullet scene
+	var bullet = bullet_scene.instantiate()
+	
+	# Choose the starting position of the bullet as the Mob's position
+	var bullet_spawn_location = position
+	bullet.position = bullet_spawn_location
+	
+	# Set the bullet's direction to aim at the player
+	var direction = position.angle_to_point($Player.position)
+	bullet.rotation = direction
+	
+	# Set the velocity of the bullet
+	var velocity = Vector2(100.0, 0.0)
+	bullet.linear_velocity = velocity.rotated(direction)
+	
+	# Spawn the bullet
+	add_child(bullet)
