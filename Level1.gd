@@ -2,7 +2,11 @@ extends Node
 
 @export var mob_scene: PackedScene
 @export var bullet_scene: PackedScene
+@export var mob_cap: int
+
 var score
+var mob_count = 0
+var kill_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,6 +17,7 @@ func _ready():
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	get_tree().call_group("mobs", "queue_free")
+	get_tree().call_group("bullets", "queue_free")
 	# $Music.play()
 
 
@@ -30,29 +35,31 @@ func game_over():
 	
 
 func _on_mob_timer_timeout():
-	# Create a new instance of the Mob scene.
-	var mob = mob_scene.instantiate()
+	if mob_count < mob_cap:
+		# Create a new instance of the Mob scene.
+		var mob = mob_scene.instantiate()
 
-	# Choose a random location on Path2D.
-	var mob_spawn_location = get_node("MobPath/MobSpawnLocation")
-	mob_spawn_location.progress_ratio = randf()
+		# Choose a random location on Path2D.
+		var mob_spawn_location = get_node("MobPath/MobSpawnLocation")
+		mob_spawn_location.progress_ratio = randf()
 
-	# Set the mob's direction perpendicular to the path direction.
-	var direction = mob_spawn_location.rotation + PI / 2
+		# Set the mob's direction perpendicular to the path direction.
+		var direction = mob_spawn_location.rotation + PI / 2
 
-	# Set the mob's position to a random location.
-	mob.position = mob_spawn_location.position
+		# Set the mob's position to a random location.
+		mob.position = mob_spawn_location.position
 
-	# Add some randomness to the direction.
-	direction += randf_range(-PI / 4, PI / 4)
-	mob.rotation = direction
+		# Add some randomness to the direction.
+		direction += randf_range(-PI / 4, PI / 4)
+		mob.rotation = direction
 
-	# Choose the velocity for the mob.
-	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
-	mob.linear_velocity = velocity.rotated(direction)
+		# Choose the velocity for the mob.
+		var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+		mob.linear_velocity = velocity.rotated(direction)
 
-	# Spawn the mob by adding it to the Main scene.
-	add_child(mob)
+		# Spawn the mob by adding it to the Main scene.
+		add_child(mob)
+		mob_count += 1
 
 
 func _on_score_timer_timeout():
@@ -85,5 +92,11 @@ func spawn_bullet(position):
 	add_child(bullet)
 
 
-func on_attack(body):
+func on_attack(body: Node):
 	body.queue_free()
+	if body.get_groups()[0] == "mobs":
+		kill_count += 1
+		if kill_count == mob_cap:
+			$ScoreTimer.stop()
+			$MobTimer.stop()
+			$HUD.show_message("You win!")
