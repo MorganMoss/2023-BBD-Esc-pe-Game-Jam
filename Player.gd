@@ -3,6 +3,8 @@ extends Area2D
 signal hit
 
 @export var speed = 400
+@export var attack_scene: PackedScene
+
 var screen_size
 
 func start(pos):
@@ -13,7 +15,6 @@ func start(pos):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	get_node("/root/Main/Attack").visible = false
 	hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,18 +48,18 @@ func _process(delta):
 
 func _input(event):
 	if event is InputEventMouseButton:
-		var attack_node = get_node("/root/Main/Attack")
+		# Create a new instance of the Attack scene
+		var attack = attack_scene.instantiate()
 		
-		# Set the position of the attack
-		var player_position = get_node("/root/Main/Player").position
-		attack_node.position = player_position.move_toward(event.position, 50)
+		# Choose the starting position of the attack
+		attack.position = Vector2.ZERO
 		
-		# Aim in the direction of the mouse
+		# Set the attack's direction to aim at the player
 		var direction = self.position.angle_to_point(event.position)
-		attack_node.rotation = direction
+		attack.rotation = direction
 		
-		# Make the attack visible
-		attack_node.visible = true
+		# Spawn the attack
+		add_child(attack)
 
 func _on_body_entered(body):
 	hide()

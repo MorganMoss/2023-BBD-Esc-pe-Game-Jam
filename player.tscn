@@ -1,12 +1,15 @@
-[gd_scene load_steps=37 format=3 uid="uid://dk83fq7e0glm1"]
+[gd_scene load_steps=40 format=3 uid="uid://dk83fq7e0glm1"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_hn8pb"]
 [ext_resource type="Texture2D" uid="uid://ddec2rqjae272" path="res://art/playerSprites/runningBack/RedPandaRunBack0000.png" id="2_0oa2o"]
 [ext_resource type="Texture2D" uid="uid://1yhkm1iddgdy" path="res://art/playerSprites/runningForward/RedPandaRunFront0000.png" id="2_aeq6f"]
+[ext_resource type="PackedScene" uid="uid://46xslcbt81x3" path="res://attack.tscn" id="2_fnfjk"]
 [ext_resource type="Texture2D" uid="uid://dbg8jwracxwmo" path="res://art/playerSprites/runningForward/RedPandaRunFront0001.png" id="3_pe5vg"]
+[ext_resource type="Texture2D" uid="uid://cj4cxlj8pyjiq" path="res://art/playerGrey_walk1.png" id="3_uphgh"]
 [ext_resource type="Texture2D" uid="uid://qjl0ijrhn2x3" path="res://art/playerSprites/runningBack/RedPandaRunBack0001.png" id="3_v0ke7"]
 [ext_resource type="Texture2D" uid="uid://dn3xur4423rvf" path="res://art/playerSprites/runningBack/RedPandaRunBack0002.png" id="4_27gkh"]
 [ext_resource type="Texture2D" uid="uid://csan7d18tn6io" path="res://art/playerSprites/runningForward/RedPandaRunFront0002.png" id="4_h2s6n"]
+[ext_resource type="Texture2D" uid="uid://bnkhmakr5q4em" path="res://art/playerGrey_walk2.png" id="4_qj6yo"]
 [ext_resource type="Texture2D" uid="uid://cl4wuxwaskeyl" path="res://art/playerSprites/runningBack/RedPandaRunBack0003.png" id="5_a4div"]
 [ext_resource type="Texture2D" uid="uid://bein5vq74o1mh" path="res://art/playerSprites/runningForward/RedPandaRunFront0003.png" id="5_lbh7i"]
 [ext_resource type="Texture2D" uid="uid://dsbwh5bgynr0e" path="res://art/playerSprites/runningBack/RedPandaRunBack0004.png" id="6_5ogci"]
@@ -155,25 +158,37 @@ animations = [{
 "loop": true,
 "name": &"RunSide",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_uphgh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qj6yo")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_52v8h"]
-radius = 46.0
-height = 100.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eftj5"]
+size = Vector2(36, 36)
 
 [node name="Player" type="Area2D"]
 texture_filter = 1
 script = ExtResource("1_hn8pb")
+attack_scene = ExtResource("2_fnfjk")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(9.53674e-07, 1.90735e-06)
-scale = Vector2(5, 5)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_viqc8")
 animation = &"RunBack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_52v8h")
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_eftj5")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

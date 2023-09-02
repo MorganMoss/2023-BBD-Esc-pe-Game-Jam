@@ -88,4 +88,5 @@ func spawn_bullet(position):
 
 
 func on_attack(body):
-	print("Hit")
+	print("Attac")
+	body.queue_free()
