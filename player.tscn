@@ -1,9 +1,9 @@
-[gd_scene load_steps=41 format=3 uid="uid://dk83fq7e0glm1"]
+[gd_scene load_steps=64 format=3 uid="uid://dk83fq7e0glm1"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_hn8pb"]
 [ext_resource type="Texture2D" uid="uid://ddec2rqjae272" path="res://art/playerSprites/runningBack/RedPandaRunBack0000.png" id="2_0oa2o"]
 [ext_resource type="Texture2D" uid="uid://1yhkm1iddgdy" path="res://art/playerSprites/runningForward/RedPandaRunFront0000.png" id="2_aeq6f"]
-[ext_resource type="PackedScene" uid="uid://623w34n8oafh" path="res://attack.tscn" id="2_fnfjk"]
+[ext_resource type="PackedScene" uid="uid://46xslcbt81x3" path="res://attack.tscn" id="2_fnfjk"]
 [ext_resource type="Texture2D" uid="uid://dbg8jwracxwmo" path="res://art/playerSprites/runningForward/RedPandaRunFront0001.png" id="3_pe5vg"]
 [ext_resource type="Texture2D" uid="uid://csm3kw701xswk" path="res://art/playerGrey_walk1.png" id="3_uphgh"]
 [ext_resource type="Texture2D" uid="uid://qjl0ijrhn2x3" path="res://art/playerSprites/runningBack/RedPandaRunBack0001.png" id="3_v0ke7"]
@@ -37,6 +37,28 @@
 [ext_resource type="Texture2D" uid="uid://biby2lyqhai15" path="res://art/playerSprites/runningSide/RedPandaRunSide0008.png" id="32_y5siy"]
 [ext_resource type="Texture2D" uid="uid://cn7iykr2mdova" path="res://art/playerSprites/runningSide/RedPandaRunSide0009.png" id="33_twdq6"]
 [ext_resource type="Texture2D" uid="uid://eqgwj3fr6bo0" path="res://art/playerSprites/runningSide/RedPandaRunSide0010.png" id="34_8xqc7"]
+[ext_resource type="Texture2D" uid="uid://dg3yvkhha1dkc" path="res://art/playerSprites/blackStickAttack/RedPandaBlackStickAttack0000.png" id="38_j4mb8"]
+[ext_resource type="Texture2D" uid="uid://b02bw64yyhpni" path="res://art/playerSprites/blackStickAttack/RedPandaBlackStickAttack0001.png" id="39_eb4xa"]
+[ext_resource type="Texture2D" uid="uid://dmsmensf8yj1t" path="res://art/playerSprites/blackStickAttack/RedPandaBlackStickAttack0002.png" id="40_1mmpp"]
+[ext_resource type="Texture2D" uid="uid://ij7t7bg112r7" path="res://art/playerSprites/blackStickAttack/RedPandaBlackStickAttack0003.png" id="41_6uxi4"]
+[ext_resource type="Texture2D" uid="uid://1hr6y20tguy6" path="res://art/playerSprites/blackStickAttack/RedPandaBlackStickAttack0004.png" id="42_8sshe"]
+[ext_resource type="Texture2D" uid="uid://di2d1pe2n1fww" path="res://art/playerSprites/blackStickAttack/RedPandaBlackStickAttack0005.png" id="43_uhnvk"]
+[ext_resource type="Texture2D" uid="uid://ccw3wkf4d7fm6" path="res://art/playerSprites/blackStickAttack/RedPandaBlackStickAttack0006.png" id="44_sf182"]
+[ext_resource type="Texture2D" uid="uid://c6wshjp5661oj" path="res://art/playerSprites/blackStickAttack/RedPandaBlackStickAttack0007.png" id="45_00q82"]
+[ext_resource type="Texture2D" uid="uid://ccwjjlg3ur2fc" path="res://art/playerSprites/blackStickAttack/RedPandaBlackStickAttack0008.png" id="46_8wqwo"]
+[ext_resource type="Texture2D" uid="uid://oa817fb3xo6e" path="res://art/playerSprites/blackStickAttack/RedPandaBlackStickAttack0009.png" id="47_3grgg"]
+[ext_resource type="Texture2D" uid="uid://bow6l4hqbul3h" path="res://art/playerSprites/blackStickAttack/RedPandaBlackStickAttack0010.png" id="48_icwat"]
+[ext_resource type="Texture2D" uid="uid://ddout71i873w7" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0000.png" id="49_52iec"]
+[ext_resource type="Texture2D" uid="uid://sqlto43nihos" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0001.png" id="50_1qd6i"]
+[ext_resource type="Texture2D" uid="uid://drbsf5ef544o8" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0002.png" id="51_5t157"]
+[ext_resource type="Texture2D" uid="uid://cc8fav3731xl4" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0003.png" id="52_xvro7"]
+[ext_resource type="Texture2D" uid="uid://br7cbts5ykxuq" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0004.png" id="53_8fxe1"]
+[ext_resource type="Texture2D" uid="uid://o4foqtrdtpx7" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0005.png" id="54_5f44i"]
+[ext_resource type="Texture2D" uid="uid://bge11grgqfrwl" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0006.png" id="55_xn6gh"]
+[ext_resource type="Texture2D" uid="uid://6jqx86p40me1" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0007.png" id="56_piaqw"]
+[ext_resource type="Texture2D" uid="uid://c20gwq7bnlyx3" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0008.png" id="57_ish7l"]
+[ext_resource type="Texture2D" uid="uid://dyqrvcce0iohs" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0009.png" id="58_p1o8y"]
+[ext_resource type="Texture2D" uid="uid://b32grykpys1nc" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0010.png" id="59_ejnl6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eftj5"]
 size = Vector2(36, 36)
@@ -196,11 +218,91 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_4h6ek"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_j4mb8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_eb4xa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_1mmpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_6uxi4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_8sshe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_uhnvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_sf182")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_00q82")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_8wqwo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_3grgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_icwat")
+}],
+"loop": true,
+"name": &"blackStick",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("49_52iec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_1qd6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_5t157")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_xvro7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_8fxe1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_5f44i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_xn6gh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_piaqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_ish7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_p1o8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_ejnl6")
+}],
+"loop": true,
+"name": &"fireStick",
+"speed": 12.0
+}]
+
 [node name="Player" type="Area2D"]
 texture_filter = 1
 script = ExtResource("1_hn8pb")
 dash_attack_distance = 200.0
-dash_attack_ghost_delay_time = 0.6
+dash_attack_charge_time = 0.6
+dash_attack_ghost_delay_time = 0.2
 attack_scene = ExtResource("2_fnfjk")
 metadata/_edit_group_ = true
 
@@ -220,5 +322,10 @@ position = Vector2(9.53674e-07, 1.90735e-06)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_viqc8")
 animation = &"RunSide"
+
+[node name="MeleeAttackSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_4h6ek")
+animation = &"fireStick"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

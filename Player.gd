@@ -19,6 +19,7 @@ var dash_attack_direction: Vector2
 var velocity: Vector2 = Vector2.ZERO
 var ghost_sprite: AnimatedSprite2D
 var player_sprite: AnimatedSprite2D
+var melee_weapon_sprite: AnimatedSprite2D
 var player_hitbox: CollisionShape2D
 
 func start(pos):
@@ -31,6 +32,7 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	ghost_sprite = get_node("DashGhostSprite2D")
 	player_sprite = get_node("PlayerSprite2D")
+	melee_weapon_sprite = get_node("MeleeAttackSprite2D")
 	player_hitbox = get_node("PlayerCollision2D")
 	hide()
 
