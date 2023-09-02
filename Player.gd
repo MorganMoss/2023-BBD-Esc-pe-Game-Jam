@@ -29,10 +29,10 @@ func start(pos):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	hide()
 	ghost_sprite = get_node("DashGhostSprite2D")
 	player_sprite = get_node("PlayerSprite2D")
 	player_hitbox = get_node("PlayerCollision2D")
+	hide()
 
 func handle_charge_up(delta, direction_vector):
 	dash_attack_charge += delta
@@ -125,9 +125,7 @@ func _input(event):
 			trigger_charge_dash_attack()
 		elif(event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
 			trigger_dash_attack()
-			
-		var attack_node = get_node("/root/Main/Attack")
-		# Create a new instance of the Attack scene
+
 		var attack = attack_scene.instantiate()
 		
 		# Choose the starting position of the attack
@@ -139,6 +137,7 @@ func _input(event):
 		
 		# Spawn the attack
 		add_child(attack)
+
 
 func _on_body_entered(body):
 	hide()
