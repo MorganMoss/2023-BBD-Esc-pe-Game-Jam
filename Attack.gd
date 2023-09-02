@@ -15,7 +15,6 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	print("Ah")
 	get_node("/root/Main").on_attack(body)
 
 
