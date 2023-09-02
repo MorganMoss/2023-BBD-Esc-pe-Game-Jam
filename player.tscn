@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dk83fq7e0glm1"]
+[gd_scene load_steps=38 format=3 uid="uid://dk83fq7e0glm1"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_hn8pb"]
 [ext_resource type="Texture2D" uid="uid://ddec2rqjae272" path="res://art/playerSprites/runningBack/RedPandaRunBack0000.png" id="2_0oa2o"]
@@ -37,11 +37,6 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_viqc8"]
 animations = [{
-"frames": [],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_0oa2o")
@@ -161,19 +156,53 @@ animations = [{
 radius = 46.0
 height = 100.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_0i2dn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0oa2o")
+}],
+"loop": true,
+"name": &"Back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_aeq6f")
+}],
+"loop": true,
+"name": &"Front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_8jy0c")
+}],
+"loop": true,
+"name": &"Side",
+"speed": 5.0
+}]
+
 [node name="Player" type="Area2D"]
 texture_filter = 1
 script = ExtResource("1_hn8pb")
+dash_attack_ghost_delay_time = 0.6
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PlayerSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(9.53674e-07, 1.90735e-06)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_viqc8")
 animation = &"RunBack"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerCollision2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_52v8h")
+
+[node name="DashGhostSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9.53674e-07, 1.90735e-06)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_0i2dn")
+animation = &"Side"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
