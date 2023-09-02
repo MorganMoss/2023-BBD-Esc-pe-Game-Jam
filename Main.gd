@@ -85,3 +85,7 @@ func spawn_bullet(position):
 	
 	# Spawn the bullet
 	add_child(bullet)
+
+
+func on_attack(body):
+	print("Hit")

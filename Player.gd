@@ -13,6 +13,7 @@ func start(pos):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
+	get_node("/root/Main/Attack").visible = false
 	hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,6 +45,20 @@ func _process(delta):
 		$AnimatedSprite2D.animation = "up"
 		$AnimatedSprite2D.flip_v = velocity.y > 0
 
+func _input(event):
+	if event is InputEventMouseButton:
+		var attack_node = get_node("/root/Main/Attack")
+		
+		# Set the position of the attack
+		var player_position = get_node("/root/Main/Player").position
+		attack_node.position = player_position.move_toward(event.position, 50)
+		
+		# Aim in the direction of the mouse
+		var direction = self.position.angle_to_point(event.position)
+		attack_node.rotation = direction
+		
+		# Make the attack visible
+		attack_node.visible = true
 
 func _on_body_entered(body):
 	hide()
