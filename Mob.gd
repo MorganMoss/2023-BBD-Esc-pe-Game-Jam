@@ -16,4 +16,4 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_shoot_timer_timeout():
-	get_node("/root/Main").spawn_bullet(self.position)
+	get_node("/root/Level1").spawn_bullet(self.position)
