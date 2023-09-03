@@ -321,6 +321,7 @@ animation = &"Side"
 
 [node name="DashAttackChargeUp" type="AudioStreamPlayer" parent="DashGhostSprite2D"]
 stream = ExtResource("6_2qv7b")
+volume_db = -10.326
 pitch_scale = 4.0
 
 [node name="DashAttackWhoosh" type="AudioStreamPlayer" parent="DashGhostSprite2D"]
