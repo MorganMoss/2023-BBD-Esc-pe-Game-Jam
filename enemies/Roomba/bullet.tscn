@@ -1,25 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt14cyhxfe2st"]
+[gd_scene load_steps=9 format=3 uid="uid://bt14cyhxfe2st"]
 
-[ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_quwog"]
-[ext_resource type="Texture2D" uid="uid://n1wq2x7v5dur" path="res://art/attack-1-1.png" id="2_arswr"]
-[ext_resource type="Texture2D" uid="uid://bhb3iarbeie7j" path="res://art/attack-1-2.png" id="3_80cyx"]
-[ext_resource type="Texture2D" uid="uid://bsx3g22md24tn" path="res://art/attack-1-3.png" id="4_yg1gx"]
-[ext_resource type="Texture2D" uid="uid://dtly73125mwbo" path="res://art/attack-1-4.png" id="5_liys5"]
+[ext_resource type="Script" path="res://Bullet.gd" id="1_quwog"]
+[ext_resource type="Texture2D" uid="uid://c28qgrgmfvq5h" path="res://art/Red Effect Bullet Impact Explosion 32x32.png" id="2_oqbnb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kvy0"]
+atlas = ExtResource("2_oqbnb")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn3vl"]
+atlas = ExtResource("2_oqbnb")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phfj0"]
+atlas = ExtResource("2_oqbnb")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyp6q"]
+atlas = ExtResource("2_oqbnb")
+region = Rect2(448, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6vrts"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_arswr")
+"texture": SubResource("AtlasTexture_2kvy0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_80cyx")
+"texture": SubResource("AtlasTexture_rn3vl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_yg1gx")
+"texture": SubResource("AtlasTexture_phfj0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_liys5")
+"texture": SubResource("AtlasTexture_nyp6q")
 }],
 "loop": true,
 "name": &"fly",

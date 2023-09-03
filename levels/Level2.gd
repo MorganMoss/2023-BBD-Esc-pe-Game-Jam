@@ -2,6 +2,7 @@ extends Node
 
 @export var mob_scene: PackedScene
 @export var bullet_scene: PackedScene
+@export var big_bullet_scene: PackedScene
 @export var mob_cap: int
 
 var score
@@ -67,6 +68,27 @@ func _on_start_timer_timeout():
 
 
 func spawn_bullet(position):
+	if $Player:
+		# Create a new instance of the Bullet scene
+		var bullet = bullet_scene.instantiate()
+		
+		# Choose the starting position of the bullet as the Mob's position
+		var bullet_spawn_location = position
+		bullet.position = bullet_spawn_location
+		
+		# Set the bullet's direction to aim at the player
+		var direction = position.angle_to_point($Player.position)
+		bullet.rotation = direction
+		
+		# Set the velocity of the bullet
+		var velocity = Vector2(100.0, 0.0)
+		bullet.linear_velocity = velocity.rotated(direction)
+		
+		# Spawn the bullet
+		add_child(bullet)
+
+
+func spawn_big_bullet(position):
 	if $Player:
 		# Create a new instance of the Bullet scene
 		var bullet = bullet_scene.instantiate()

@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://qchc8uvt3asj"]
+
+[ext_resource type="Script" path="res://Bigbullet.gd" id="1_yicd5"]
+[ext_resource type="Texture2D" uid="uid://dc7o4l08qdvwv" path="res://art/Blue Effect Bullet Impact Explosion 32x32.png" id="2_03wev"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mor4g"]
+atlas = ExtResource("2_03wev")
+region = Rect2(512, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfrsg"]
+atlas = ExtResource("2_03wev")
+region = Rect2(544, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfbv4"]
+atlas = ExtResource("2_03wev")
+region = Rect2(576, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8esu"]
+atlas = ExtResource("2_03wev")
+region = Rect2(608, 256, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6vrts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mor4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfrsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfbv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8esu")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u3vs8"]
+radius = 20.0
+height = 44.0
+
+[node name="Bigbullet" type="RigidBody2D" groups=["bullets"]]
+position = Vector2(84, 103)
+collision_layer = 3
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_yicd5")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_6vrts")
+animation = &"fly"
+frame_progress = 0.622745
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_u3vs8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
