@@ -13,7 +13,7 @@
 script = ExtResource("1_621tv")
 mob_scene = ExtResource("2_ha0mp")
 bullet_scene = ExtResource("3_l1w8l")
-mob_cap = 50
+mob_cap = 100
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

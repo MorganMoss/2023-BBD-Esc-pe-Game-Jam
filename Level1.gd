@@ -2,6 +2,7 @@ extends Node
 
 @export var mob_scene: PackedScene
 @export var bullet_scene: PackedScene
+@export var level2_scene: PackedScene
 @export var mob_cap: int
 
 var score
@@ -58,7 +59,7 @@ func _on_mob_timer_timeout():
 		direction += randf_range(-PI / 4, PI / 4)
 
 		# Choose the velocity for the mob.
-		var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+		var velocity = Vector2(randf_range(50.0, 150.0), 0.0)
 		mob.linear_velocity = velocity.rotated(direction)
 
 		# Spawn the mob by adding it to the Main scene.
@@ -104,4 +105,9 @@ func on_attack(body: Node):
 		if kill_count == mob_cap:
 			$ScoreTimer.stop()
 			$MobTimer.stop()
-			$HUD.show_message("You win!")
+			$HUD.show_message("Level 1 Clear!")
+			$WinTimer.start()
+
+
+func _on_win_timer_timeout():
+	get_tree().change_scene_to_packed(level2_scene)
