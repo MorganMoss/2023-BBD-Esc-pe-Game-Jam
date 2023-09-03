@@ -19,14 +19,15 @@ position = Vector2(24, 0)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_c6yxx")
+speed = 0
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_viqc8")
 animation = &"slash"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-24, -68, -24, 68, 0, 68, 24, 24, 24, -24, 0, -68)
+polygon = PackedVector2Array(-36, -102, -36, 102, 0, 102, 36, 36, 36, -36, 0, -102)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

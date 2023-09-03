@@ -11,6 +11,7 @@ signal hit
 
 var screen_size
 var is_charging_dash_attack: bool = false
+var dash_attack_enabled: bool = true
 var dash_attack_ready: bool = false
 var dash_attacking: bool = false
 var dash_attack_charge: float = float()
@@ -45,7 +46,6 @@ func _ready():
 
 func handle_charge_up(delta, direction_vector):
 	dash_attack_charge += delta
-	player_sprite.modulate = Color(1,1,1,1)
 	if dash_attack_charge >= dash_attack_ghost_delay_time:
 		ghost_sprite.modulate = Color(1, 1, 1, 0.4)
 		ghost_sprite.position = direction_vector * dash_attack_distance
@@ -108,7 +108,6 @@ func _process(delta):
 		handle_ghost_animation_direction(mouse_direction)
 	elif dash_attacking:
 		player_hitbox.set_deferred("disabled", true)
-		player_sprite.modulate = Color(1,1,1)
 		if dash_attack_elapsed_distance <= dash_attack_distance:
 			velocity = dash_attack_direction * dash_attack_speed
 		else:
@@ -129,6 +128,8 @@ func trigger_dash_attack():
 	played_charge_up_sound = false
 	is_charging_dash_attack = false
 	if dash_attack_ready:
+		$DashCooldown.start()
+		dash_attack_enabled = false
 		dash_attack_elapsed_distance = 0
 		dash_attack_ready = false
 		dash_attacking = true
@@ -165,7 +166,7 @@ func trigger_melee_attack(direction: float):
 	else:
 		$DashGhostSprite2D/DashAttackWhoosh.play()
 	# Choose the starting position of the attack
-	attack.position = Vector2.ZERO
+	attack.position = Vector2.from_angle(direction) * 50
 	# Set the attack's direction to aim at the player
 	attack.rotation = direction
 	
@@ -177,10 +178,11 @@ func _input(event):
 		return
 	if event is InputEventMouseButton:
 		if (event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
-			trigger_charge_dash_attack()
+			if dash_attack_enabled:
+				trigger_charge_dash_attack()
 		elif (event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
 			trigger_dash_attack()
-			if dash_attack_charge < dash_attack_ghost_delay_time or dash_attacking:
+			if dash_attack_charge < dash_attack_ghost_delay_time or dash_attacking or !dash_attack_enabled:
 				var direction = self.position.angle_to_point(event.position)
 				if not attacking:
 					trigger_melee_attack(direction)
@@ -198,3 +200,9 @@ func _on_body_entered(body):
 func kill():
 	is_dead = true
 	
+
+
+func _on_dash_cooldown_timeout():
+	dash_attack_enabled = true
+	player_sprite.modulate = Color(1, 1, 1, 1)
+	$DashCooldown/Recharge.play()
