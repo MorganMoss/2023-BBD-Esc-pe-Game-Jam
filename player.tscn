@@ -336,7 +336,7 @@ stream = ExtResource("60_a8dm4")
 pitch_scale = 1.51
 
 [node name="DashCooldown" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 5.0
 one_shot = true
 
 [node name="Recharge" type="AudioStreamPlayer" parent="DashCooldown"]
