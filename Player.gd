@@ -113,7 +113,7 @@ func _process(delta):
 		else:
 			dash_attacking = false
 		handle_player_animation_direction(velocity)			
-	else:
+	elif not attacking:
 		is_charging_dash_attack = false
 		handle_normal_movement()
 		handle_player_animation_direction(velocity)
