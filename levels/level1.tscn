@@ -1,13 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvi42kvf5fbi4"]
+[gd_scene load_steps=14 format=3 uid="uid://dvi42kvf5fbi4"]
 
 [ext_resource type="Script" path="res://levels/Level1.gd" id="1_egcs4"]
 [ext_resource type="PackedScene" uid="uid://vdeh2o6vmudm" path="res://enemies/Roomba/roomba.tscn" id="2_blj06"]
 [ext_resource type="PackedScene" uid="uid://bt14cyhxfe2st" path="res://enemies/Roomba/bullet.tscn" id="3_dnwi8"]
 [ext_resource type="PackedScene" uid="uid://dk83fq7e0glm1" path="res://player/player.tscn" id="4_t55es"]
+[ext_resource type="PackedScene" uid="uid://45g0b4c13ki6" path="res://enemies/Slimes/GreenSlimeBullet.tscn" id="4_y5s5u"]
 [ext_resource type="PackedScene" uid="uid://rcq5ru0sesxk" path="res://levels/level2.tscn" id="4_yldbk"]
 [ext_resource type="PackedScene" uid="uid://cflsdjksqt056" path="res://hud.tscn" id="5_mij4d"]
 [ext_resource type="AudioStream" uid="uid://c0aemsp6eecqf" path="res://art/gameover.wav" id="6_42nyg"]
 [ext_resource type="AudioStream" uid="uid://c1qsom8wawwuo" path="res://sound/creepy-ambient.mp3" id="6_s3vu1"]
+[ext_resource type="PackedScene" uid="uid://cxbmntxvsmtug" path="res://enemies/Slimes/GreenSlime.tscn" id="7_pso40"]
 [ext_resource type="PackedScene" uid="uid://b84jkpvotu3id" path="res://tileMaps/tile_map_purple.tscn" id="8_rli0j"]
 
 [sub_resource type="Curve2D" id="Curve2D_t2hwa"]
@@ -16,10 +18,17 @@ _data = {
 }
 point_count = 8
 
+[sub_resource type="Curve2D" id="Curve2D_6ynqv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 41, 47, 0, 0, 0, 0, 1241, 45, 0, 0, 0, 0, 40, 47)
+}
+point_count = 3
+
 [node name="Level1" type="Node"]
 script = ExtResource("1_egcs4")
 mob_scene = ExtResource("2_blj06")
 bullet_scene = ExtResource("3_dnwi8")
+slime_bullet_scene = ExtResource("4_y5s5u")
 level2_scene = ExtResource("4_yldbk")
 mob_cap = 1
 
@@ -79,6 +88,18 @@ curve = SubResource("Curve2D_t2hwa")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 rotation = -0.00075189
+
+[node name="SlimePath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_6ynqv")
+
+[node name="SlimeSpawnLocation" type="PathFollow2D" parent="SlimePath"]
+position = Vector2(41, 47)
+rotation = -0.00166667
+
+[node name="GreenSlime" parent="." instance=ExtResource("7_pso40")]
+position = Vector2(63, 18)
+animation = 3
+direction = 1
 
 [node name="HUD" parent="." instance=ExtResource("5_mij4d")]
 

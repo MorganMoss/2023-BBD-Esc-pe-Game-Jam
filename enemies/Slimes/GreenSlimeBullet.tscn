@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://45g0b4c13ki6"]
+[gd_scene load_steps=7 format=3 uid="uid://45g0b4c13ki6"]
 
+[ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_5uuuy"]
 [ext_resource type="Texture2D" uid="uid://62q3nlrqht7b" path="res://art/enemySprites/slime/Slime projectile.png" id="1_k3qmi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mvxjo"]
@@ -24,10 +25,23 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="GreenSlimeBullet" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_mulo1"]
+radius = 11.0454
+
+[node name="GreenSlimeBullet" type="RigidBody2D" groups=["bullets"]]
+collision_layer = 3
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_5uuuy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_rvrd4")
 animation = &"fly"
 frame_progress = 0.648447
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mulo1")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

@@ -2,6 +2,7 @@ extends Node
 
 @export var mob_scene: PackedScene
 @export var bullet_scene: PackedScene
+@export var slime_bullet_scene: PackedScene
 @export var level2_scene: PackedScene
 @export var mob_cap: int
 
@@ -28,8 +29,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
+	if $GreenSlime:
+		$SlimePath/SlimeSpawnLocation.progress_ratio += delta/16
+		$GreenSlime.position = $SlimePath/SlimeSpawnLocation.position
 
 func game_over():
 	on_game_over.emit()
@@ -96,11 +98,41 @@ func spawn_bullet(position):
 		
 		# Spawn the bullet
 		add_child(bullet)
+		
+func spawn_slime_bullet(position, direction):
+	if $Player:
+		# Create a new instance of the Bullet scene
+		var slime_bullet = slime_bullet_scene.instantiate()
+		
+		# Choose the starting position of the bullet as the Mob's position
+		var bullet_spawn_location = position
+		slime_bullet.position = bullet_spawn_location
+		
+		# Set the bullet's direction to aim at the player
+		slime_bullet.rotation = direction
+		
+		# Set the velocity of the bullet
+		var velocity = Vector2(100.0, 0.0)
+		slime_bullet.linear_velocity = velocity.rotated(direction)
+		
+		# Spawn the bullet
+		add_child(slime_bullet)
 
 
 func on_attack(body: Node):
 	body.queue_free()
 	if body.get_groups()[0] == "mobs":
+		kill_count += 1
+		if kill_count == mob_cap:
+			$ScoreTimer.stop()
+			$MobTimer.stop()
+			$HUD.show_message("Level 1 Clear!")
+			$WinTimer.start()
+
+
+func on_attack_area(area: Area2D):
+	area.queue_free()
+	if area.get_groups()[0] == "slimes":
 		kill_count += 1
 		if kill_count == mob_cap:
 			$ScoreTimer.stop()

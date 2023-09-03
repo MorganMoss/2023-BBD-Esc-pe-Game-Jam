@@ -1,6 +1,7 @@
-[gd_scene load_steps=46 format=3 uid="uid://cxbmntxvsmtug"]
+[gd_scene load_steps=48 format=3 uid="uid://cxbmntxvsmtug"]
 
 [ext_resource type="Texture2D" uid="uid://5u3afo4o5j8w" path="res://art/enemySprites/slime/Slime green.png" id="1_u2p0v"]
+[ext_resource type="Script" path="res://enemies/Slimes/GreenSlime.gd" id="1_wdv3q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uilob"]
 atlas = ExtResource("1_u2p0v")
@@ -346,11 +347,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="GreenSlime" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0l8t7"]
+radius = 24.0208
+
+[node name="GreenSlime" type="Area2D" groups=["slimes"]]
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("1_wdv3q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_tw2xk")
-animation = &"Die"
-frame = 9
-frame_progress = 1.0
+animation = &"RunBack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0l8t7")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -30,4 +30,5 @@ animation = &"slash"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-36, -102, -36, 102, 0, 102, 36, 36, 36, -36, 0, -102)
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

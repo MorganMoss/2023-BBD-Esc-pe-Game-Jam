@@ -19,7 +19,13 @@ func _on_body_entered(body):
 		get_node("/root/Level1").on_attack(body)
 	elif get_node("/root/Level2"):
 		get_node("/root/Level2").on_attack(body)
+		
 
+func _on_area_entered(area):
+	if get_node("/root/Level1"):
+		get_node("/root/Level1").on_attack_area(area)
+	elif get_node("/root/Level2"):
+		get_node("/root/Level2").on_attack_area(area)
 
 func end_attack():
 	queue_free()
