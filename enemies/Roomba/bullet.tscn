@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bt14cyhxfe2st"]
 
-[ext_resource type="Script" path="res://Bullet.gd" id="1_quwog"]
+[ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_quwog"]
 [ext_resource type="Texture2D" uid="uid://c28qgrgmfvq5h" path="res://art/Red Effect Bullet Impact Explosion 32x32.png" id="2_oqbnb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2kvy0"]
