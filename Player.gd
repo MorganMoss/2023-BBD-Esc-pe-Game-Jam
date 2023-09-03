@@ -22,6 +22,7 @@ var player_sprite: AnimatedSprite2D
 var melee_weapon_sprite: AnimatedSprite2D
 var player_hitbox: CollisionShape2D
 var attacking: bool = false
+var played_charge_up_sound: bool = false
 
 func start(pos):
 	position = pos
@@ -43,6 +44,9 @@ func handle_charge_up(delta, direction_vector):
 	if dash_attack_charge >= dash_attack_ghost_delay_time:
 		ghost_sprite.modulate = Color(1, 1, 1, 0.4)
 		ghost_sprite.position = direction_vector * dash_attack_distance
+		if not played_charge_up_sound:
+			played_charge_up_sound = true
+			$DashGhostSprite2D/DashAttackChargeUp.play()
 	
 	dash_attack_ready = dash_attack_charge >= dash_attack_charge_time
 	if dash_attack_ready:
@@ -118,6 +122,7 @@ func trigger_dash_attack():
 		dash_attack_elapsed_distance = 0
 		dash_attack_ready = false
 		dash_attacking = true
+		played_charge_up_sound = false
 		dash_attack_direction = (get_global_mouse_position() - position).normalized()
 
 func trigger_charge_dash_attack():
@@ -131,7 +136,6 @@ func _input(event):
 	if event is InputEventMouseButton and not attacking:
 		if (event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
 			trigger_charge_dash_attack()
-			$DashGhostSprite2D/DashAttackChargeUp.play()
 		elif(event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
 			trigger_dash_attack()
 			if dash_attack_charge <= dash_attack_ghost_delay_time or dash_attacking:
