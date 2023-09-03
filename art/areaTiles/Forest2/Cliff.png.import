@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6osf2el0u3ms"
-path="res://.godot/imported/attack-1-3.png-f3dc88c7e27bc2fab1919877f348213e.ctex"
+uid="uid://du76ho6gcob3n"
+path="res://.godot/imported/Cliff.png-9b4b0eecc0c0f7f943f038cf6e40996c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/attack-1-3.png"
-dest_files=["res://.godot/imported/attack-1-3.png-f3dc88c7e27bc2fab1919877f348213e.ctex"]
+source_file="res://art/areaTiles/Forest2/Cliff.png"
+dest_files=["res://.godot/imported/Cliff.png-9b4b0eecc0c0f7f943f038cf6e40996c.ctex"]
 
 [params]
 

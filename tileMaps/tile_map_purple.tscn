@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b84jkpvotu3id"]
+[gd_scene load_steps=9 format=3 uid="uid://b84jkpvotu3id"]
 
 [ext_resource type="Texture2D" uid="uid://bqdtqtg3oygwf" path="res://art/areaTiles/BrickTile.png" id="1_32si8"]
 [ext_resource type="Texture2D" uid="uid://8a1qw0kshxw7" path="res://art/areaTiles/CosmicLilac_Tiles.png" id="2_eixml"]
+[ext_resource type="Script" path="res://tileMaps/tile_map_purple.gd" id="3_3jvnr"]
+[ext_resource type="Texture2D" uid="uid://dk836py81nxnw" path="res://art/areaTiles/RedTile.png" id="3_dku4e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mqes8"]
 texture = ExtResource("1_32si8")
@@ -117,12 +119,18 @@ texture = ExtResource("2_eixml")
 11:7/0 = 0
 12:7/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_71tnx"]
+texture = ExtResource("3_dku4e")
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_dj2fo"]
 sources/0 = SubResource("TileSetAtlasSource_mqes8")
 sources/1 = SubResource("TileSetAtlasSource_ioah1")
+sources/3 = SubResource("TileSetAtlasSource_71tnx")
 
 [node name="TileMap" type="TileMap"]
 texture_filter = 1
 position = Vector2(245, 304)
 tile_set = SubResource("TileSet_dj2fo")
 format = 2
+script = ExtResource("3_3jvnr")

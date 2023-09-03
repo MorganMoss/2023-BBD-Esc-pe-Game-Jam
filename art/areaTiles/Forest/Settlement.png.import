@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnvhg05q4opw4"
-path="res://.godot/imported/attack-1-4.png-edd58e1e6ef75b49475ef711f9fd5e2c.ctex"
+uid="uid://c27i775ik0sv4"
+path="res://.godot/imported/Settlement.png-888e4acd3e86f9a0f64617b63771f60b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/attack-1-4.png"
-dest_files=["res://.godot/imported/attack-1-4.png-edd58e1e6ef75b49475ef711f9fd5e2c.ctex"]
+source_file="res://art/areaTiles/Forest/Settlement.png"
+dest_files=["res://.godot/imported/Settlement.png-888e4acd3e86f9a0f64617b63771f60b.ctex"]
 
 [params]
 

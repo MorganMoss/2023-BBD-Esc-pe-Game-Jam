@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuiirqsv3tq45"
-path="res://.godot/imported/attack-1-2.png-bc4ebd3d5ebbd5d2af8378a3dbbeb47c.ctex"
+uid="uid://b8y84nsq1d8rq"
+path="res://.godot/imported/Bat_Sprite_Sheet.png-ac7ed0e1df6e8ccd9b4cca00b060c877.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/attack-1-2.png"
-dest_files=["res://.godot/imported/attack-1-2.png-bc4ebd3d5ebbd5d2af8378a3dbbeb47c.ctex"]
+source_file="res://art/enemySprites/bat/Bat_Sprite_Sheet.png"
+dest_files=["res://.godot/imported/Bat_Sprite_Sheet.png-ac7ed0e1df6e8ccd9b4cca00b060c877.ctex"]
 
 [params]
 

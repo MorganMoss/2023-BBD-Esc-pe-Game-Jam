@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boa0x1ahag8jc"
-path="res://.godot/imported/attack-1-1.png-d015b3f1a070dee98efe631db81eac4a.ctex"
+uid="uid://b5fi2abc34wy1"
+path="res://.godot/imported/GrassNDirt.png-8c2f81149033abe3c74cf7ef7d14da84.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/attack-1-1.png"
-dest_files=["res://.godot/imported/attack-1-1.png-d015b3f1a070dee98efe631db81eac4a.ctex"]
+source_file="res://art/areaTiles/Forest2/GrassNDirt.png"
+dest_files=["res://.godot/imported/GrassNDirt.png-8c2f81149033abe3c74cf7ef7d14da84.ctex"]
 
 [params]
 
