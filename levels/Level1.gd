@@ -4,10 +4,14 @@ extends Node
 @export var bullet_scene: PackedScene
 @export var level2_scene: PackedScene
 @export var mob_cap: int
+@export var waves: int = 2
+@export var wave_mob_cap_multiplier: int = 2
 
 var score
 var mob_count
 var kill_count
+var current_wave: int
+var current_mob_cap: int
 
 signal on_game_over()
 
@@ -16,6 +20,8 @@ func _ready():
 	score = 0
 	mob_count = 0
 	kill_count = 0
+	current_mob_cap = mob_cap
+	current_wave = 1
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$Music.play()
@@ -24,7 +30,6 @@ func _ready():
 	$HUD.show_message("Get Ready")
 	get_tree().call_group("mobs", "queue_free")
 	get_tree().call_group("bullets", "queue_free")
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -38,10 +43,12 @@ func game_over():
 	$HUD.show_game_over()
 	$Music.stop()
 	$DeathSound.play()
+	current_wave = 1
+	current_mob_cap = mob_cap
 	
 
 func _on_mob_timer_timeout():
-	if mob_count < mob_cap:
+	if mob_count < current_mob_cap:
 		# Create a new instance of the Mob scene.
 		var mob = mob_scene.instantiate()
 
@@ -71,11 +78,9 @@ func _on_score_timer_timeout():
 	score += 1
 	$HUD.update_score(score)
 
-
 func _on_start_timer_timeout():
 	$MobTimer.start()
 	$ScoreTimer.start()
-
 
 func spawn_bullet(position):
 	if $Player:
@@ -102,11 +107,15 @@ func on_attack(body: Node):
 	body.queue_free()
 	if body.get_groups()[0] == "mobs":
 		kill_count += 1
-		if kill_count == mob_cap:
+		if kill_count == mob_cap and current_wave > waves:
 			$ScoreTimer.stop()
 			$MobTimer.stop()
 			$HUD.show_message("Level 1 Clear!")
 			$WinTimer.start()
+		elif kill_count == current_mob_cap:
+			current_wave += 1
+			current_mob_cap += current_mob_cap*wave_mob_cap_multiplier
+			$HUD.show_message("Wave " + str(current_wave))
 
 
 func _on_win_timer_timeout():

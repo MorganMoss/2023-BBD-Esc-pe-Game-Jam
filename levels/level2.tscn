@@ -17,7 +17,7 @@ mob_scene = ExtResource("2_ha0mp")
 bullet_scene = ExtResource("3_l1w8l")
 big_bullet_scene = ExtResource("4_uep5s")
 level3_scene = ExtResource("5_4vhh7")
-mob_cap = 40
+mob_cap = 10
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

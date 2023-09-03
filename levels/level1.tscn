@@ -22,6 +22,7 @@ mob_scene = ExtResource("2_blj06")
 bullet_scene = ExtResource("3_dnwi8")
 level2_scene = ExtResource("4_yldbk")
 mob_cap = 1
+waves = 3
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
