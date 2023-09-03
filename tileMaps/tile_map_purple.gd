@@ -14,6 +14,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if player == null:
+		return
+		
 	var pos = local_to_map(to_local(player.global_position))
 	for layer in range(self.get_layers_count()):
 		var cell = self.get_cell_source_id(layer, pos)
