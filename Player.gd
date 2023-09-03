@@ -119,12 +119,12 @@ func _process(delta):
 	
 	
 func trigger_dash_attack():
+	played_charge_up_sound = false
 	is_charging_dash_attack = false
 	if dash_attack_ready:
 		dash_attack_elapsed_distance = 0
 		dash_attack_ready = false
 		dash_attacking = true
-		played_charge_up_sound = false
 		dash_attack_direction = (get_global_mouse_position() - position).normalized()
 
 func trigger_charge_dash_attack():
