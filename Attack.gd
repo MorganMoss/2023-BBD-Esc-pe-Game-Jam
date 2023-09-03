@@ -2,7 +2,7 @@ extends Area2D
 
 signal attack(body)
 
-@export var speed = 1000.0
+@export var speed = 60
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,5 +18,5 @@ func _on_body_entered(body):
 	get_node("/root/Level1").on_attack(body)
 
 
-func _on_attack_timer_timeout():
+func end_attack():
 	queue_free()

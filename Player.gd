@@ -145,14 +145,14 @@ func trigger_next_attack(direction: float):
 func trigger_melee_attack(direction: float):
 	attacking = true
 	var attack = attack_scene.instantiate()
-	
+	melee_weapon_sprite.connect("animation_finished", attack.end_attack)
 	melee_weapon_sprite.show()
 	melee_weapon_sprite.play("blackStick")
 	melee_weapon_sprite.rotation = direction-PI/2
 	$MeleeAttackSprite2D/SwordSwoosh.play()
 	
 	if not dash_attacking:
-		attack.hide()
+		pass #attack.hide()
 	else:
 		$DashGhostSprite2D/DashAttackWhoosh.play()
 	# Choose the starting position of the attack
