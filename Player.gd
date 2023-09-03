@@ -22,6 +22,8 @@ var player_sprite: AnimatedSprite2D
 var melee_weapon_sprite: AnimatedSprite2D
 var player_hitbox: CollisionShape2D
 var attacking: bool = false
+var attack_queued: bool = false
+var attack_queued_direction: float
 var played_charge_up_sound: bool = false
 
 func start(pos):
@@ -131,34 +133,49 @@ func trigger_charge_dash_attack():
 
 func attack_finished():
 	attacking = false
+	if attack_queued:
+		trigger_melee_attack(attack_queued_direction)
+		attack_queued = false
+		
+
+func trigger_next_attack(direction: float):
+	attack_queued_direction = direction
+	attack_queued = true
+
+func trigger_melee_attack(direction: float):
+	attacking = true
+	var attack = attack_scene.instantiate()
+	
+	melee_weapon_sprite.show()
+	melee_weapon_sprite.play("blackStick")
+	melee_weapon_sprite.rotation = direction-PI/2
+	$MeleeAttackSprite2D/SwordSwoosh.play()
+	
+	if not dash_attacking:
+		attack.hide()
+	else:
+		$DashGhostSprite2D/DashAttackWhoosh.play()
+	# Choose the starting position of the attack
+	attack.position = Vector2.ZERO
+	# Set the attack's direction to aim at the player
+	attack.rotation = direction
+	
+	# Spawn the attack
+	add_child(attack)
 
 func _input(event):
-	if event is InputEventMouseButton and not attacking:
+	if event is InputEventMouseButton:
 		if (event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
 			trigger_charge_dash_attack()
-		elif(event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
+		elif (event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
 			trigger_dash_attack()
-			if dash_attack_charge <= dash_attack_ghost_delay_time or dash_attacking:
+			if dash_attack_charge < dash_attack_ghost_delay_time or dash_attacking:
 				var direction = self.position.angle_to_point(event.position)
-				var attack = attack_scene.instantiate()
-				attacking = true
-				
-				melee_weapon_sprite.show()
-				melee_weapon_sprite.play("blackStick")
-				melee_weapon_sprite.rotation = direction-PI/2
-				$MeleeAttackSprite2D/SwordSwoosh.play()
-				
-				if not dash_attacking:
-					attack.hide()
+				if not attacking:
+					trigger_melee_attack(direction)
 				else:
-					$DashGhostSprite2D/DashAttackWhoosh.play()
-				# Choose the starting position of the attack
-				attack.position = Vector2.ZERO
-				# Set the attack's direction to aim at the player
-				attack.rotation = direction
+					trigger_next_attack(direction)
 				
-				# Spawn the attack
-				add_child(attack)
 
 
 func _on_body_entered(body):
