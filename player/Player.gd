@@ -209,6 +209,5 @@ func _on_dash_cooldown_timeout():
 
 
 func _on_tile_map_player_on(layer_id, tile_id):
-	print(tile_id)
 	if tile_id == 3 and not is_dead and not dash_attacking:
 		_on_body_entered(null)
