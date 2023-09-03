@@ -209,7 +209,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Die",
-"speed": 12.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -351,5 +351,6 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_tw2xk")
-animation = &"RunFront"
-frame_progress = 0.723657
+animation = &"Die"
+frame = 9
+frame_progress = 1.0
