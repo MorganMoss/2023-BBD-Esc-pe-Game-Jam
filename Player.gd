@@ -65,6 +65,7 @@ func handle_ghost_animation_direction(vector):
 		ghost_sprite.animation = "Back"
 	if vector.y > 0 and abs(vector.x) < abs(vector.y):
 		ghost_sprite.animation = "Front"
+	
 
 func handle_normal_movement():
 	if Input.is_action_pressed("move_right"):
@@ -87,6 +88,7 @@ func _process(delta):
 	velocity = Vector2.ZERO
 	var mouse_direction: Vector2 = (get_global_mouse_position() - position).normalized()
 	ghost_sprite.modulate = Color(1, 1, 1, 0)
+	
 	if is_charging_dash_attack:
 		handle_charge_up(delta, mouse_direction)
 		handle_player_animation_direction(mouse_direction)		
@@ -127,18 +129,21 @@ func _input(event):
 			trigger_charge_dash_attack()
 		elif(event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
 			trigger_dash_attack()
-
-		var attack = attack_scene.instantiate()
+			
+			var direction = self.position.angle_to_point(event.position)
+			var attack = attack_scene.instantiate()
+			
+			melee_weapon_sprite.show()
+			melee_weapon_sprite.play("blackStick")
+			melee_weapon_sprite.rotation = direction-PI/2
 		
-		# Choose the starting position of the attack
-		attack.position = Vector2.ZERO
-		
-		# Set the attack's direction to aim at the player
-		var direction = self.position.angle_to_point(event.position)
-		attack.rotation = direction
-		
-		# Spawn the attack
-		add_child(attack)
+			# Choose the starting position of the attack
+			attack.position = Vector2.ZERO
+			# Set the attack's direction to aim at the player
+			attack.rotation = direction
+			
+			# Spawn the attack
+			add_child(attack)
 
 
 func _on_body_entered(body):
