@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dk83fq7e0glm1"]
+[gd_scene load_steps=65 format=3 uid="uid://dk83fq7e0glm1"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_hn8pb"]
 [ext_resource type="Texture2D" uid="uid://ddec2rqjae272" path="res://art/playerSprites/runningBack/RedPandaRunBack0000.png" id="2_0oa2o"]
@@ -59,6 +59,7 @@
 [ext_resource type="Texture2D" uid="uid://c20gwq7bnlyx3" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0008.png" id="57_ish7l"]
 [ext_resource type="Texture2D" uid="uid://dyqrvcce0iohs" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0009.png" id="58_p1o8y"]
 [ext_resource type="Texture2D" uid="uid://b32grykpys1nc" path="res://art/playerSprites/fireStickAttack/RedPandaFireStickAttack0010.png" id="59_ejnl6"]
+[ext_resource type="AudioStream" uid="uid://bqj88vxvvspsd" path="res://sound/sword_whoosh.wav" id="60_a8dm4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eftj5"]
 size = Vector2(36, 36)
@@ -331,4 +332,8 @@ animation = &"blackStick"
 frame = 10
 frame_progress = 1.0
 
+[node name="SwordSwoosh" type="AudioStreamPlayer" parent="MeleeAttackSprite2D"]
+stream = ExtResource("60_a8dm4")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="MeleeAttackSprite2D" to="." method="attack_finished"]

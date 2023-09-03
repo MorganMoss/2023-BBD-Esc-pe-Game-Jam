@@ -21,6 +21,7 @@ var ghost_sprite: AnimatedSprite2D
 var player_sprite: AnimatedSprite2D
 var melee_weapon_sprite: AnimatedSprite2D
 var player_hitbox: CollisionShape2D
+var attacking: bool = false
 
 func start(pos):
 	position = pos
@@ -123,8 +124,11 @@ func trigger_charge_dash_attack():
 	is_charging_dash_attack = true
 	dash_attack_charge = float()
 
+func attack_finished():
+	attacking = false
+
 func _input(event):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and not attacking:
 		if (event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
 			trigger_charge_dash_attack()
 		elif(event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
@@ -132,10 +136,12 @@ func _input(event):
 			if dash_attack_charge <= dash_attack_ghost_delay_time or dash_attacking:
 				var direction = self.position.angle_to_point(event.position)
 				var attack = attack_scene.instantiate()
+				attacking = true
 				
 				melee_weapon_sprite.show()
 				melee_weapon_sprite.play("blackStick")
 				melee_weapon_sprite.rotation = direction-PI/2
+				$MeleeAttackSprite2D/SwordSwoosh.play()
 				
 				if not dash_attacking:
 					attack.hide()
