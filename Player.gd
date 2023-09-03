@@ -25,8 +25,10 @@ var attacking: bool = false
 var attack_queued: bool = false
 var attack_queued_direction: float
 var played_charge_up_sound: bool = false
+var is_dead: bool = false
 
 func start(pos):
+	is_dead = false	
 	position = pos
 	show()
 	player_hitbox.disabled = false
@@ -92,22 +94,24 @@ func handle_normal_movement():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if is_dead:
+		return
+
 	velocity = Vector2.ZERO
 	var mouse_direction: Vector2 = (get_global_mouse_position() - position).normalized()
 	ghost_sprite.modulate = Color(1, 1, 1, 0)
-	
+	player_hitbox.set_deferred("disabled", false)
 	if is_charging_dash_attack:
 		handle_charge_up(delta, mouse_direction)
 		handle_player_animation_direction(mouse_direction)		
 		handle_ghost_animation_direction(mouse_direction)
 	elif dash_attacking:
-		
+		player_hitbox.set_deferred("disabled", true)
 		player_sprite.modulate = Color(1,1,1)
 		if dash_attack_elapsed_distance <= dash_attack_distance:
 			velocity = dash_attack_direction * dash_attack_speed
 		else:
 			dash_attacking = false
-			player_hitbox.set_deferred("disabled", false)
 		handle_player_animation_direction(velocity)			
 	else:
 		is_charging_dash_attack = false
@@ -121,7 +125,6 @@ func _process(delta):
 	
 	
 func trigger_dash_attack():
-	player_hitbox.set_deferred("disabled", true)
 	played_charge_up_sound = false
 	is_charging_dash_attack = false
 	if dash_attack_ready:
@@ -167,6 +170,8 @@ func trigger_melee_attack(direction: float):
 	add_child(attack)
 
 func _input(event):
+	if is_dead:
+		return
 	if event is InputEventMouseButton:
 		if (event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
 			trigger_charge_dash_attack()
@@ -185,3 +190,8 @@ func _on_body_entered(body):
 	hide()
 	hit.emit()
 	player_hitbox.set_deferred("disabled", true)
+
+
+func kill():
+	is_dead = true
+	

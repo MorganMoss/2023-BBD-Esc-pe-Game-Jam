@@ -8,11 +8,14 @@ var score
 var mob_count = 0
 var kill_count = 0
 
+signal on_game_over()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
+	$Music.play()
 	$HUD.hide_button()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
@@ -27,6 +30,7 @@ func _process(delta):
 
 
 func game_over():
+	on_game_over.emit()
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HUD.show_game_over()
@@ -73,23 +77,24 @@ func _on_start_timer_timeout():
 
 
 func spawn_bullet(position):
-	# Create a new instance of the Bullet scene
-	var bullet = bullet_scene.instantiate()
-	
-	# Choose the starting position of the bullet as the Mob's position
-	var bullet_spawn_location = position
-	bullet.position = bullet_spawn_location
-	
-	# Set the bullet's direction to aim at the player
-	var direction = position.angle_to_point($Player.position)
-	bullet.rotation = direction
-	
-	# Set the velocity of the bullet
-	var velocity = Vector2(100.0, 0.0)
-	bullet.linear_velocity = velocity.rotated(direction)
-	
-	# Spawn the bullet
-	add_child(bullet)
+	if $Player:
+		# Create a new instance of the Bullet scene
+		var bullet = bullet_scene.instantiate()
+		
+		# Choose the starting position of the bullet as the Mob's position
+		var bullet_spawn_location = position
+		bullet.position = bullet_spawn_location
+		
+		# Set the bullet's direction to aim at the player
+		var direction = position.angle_to_point($Player.position)
+		bullet.rotation = direction
+		
+		# Set the velocity of the bullet
+		var velocity = Vector2(100.0, 0.0)
+		bullet.linear_velocity = velocity.rotated(direction)
+		
+		# Spawn the bullet
+		add_child(bullet)
 
 
 func on_attack(body: Node):

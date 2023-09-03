@@ -346,4 +346,5 @@ frame_progress = 1.0
 stream = ExtResource("60_a8dm4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="hit" from="." to="." method="kill"]
 [connection signal="animation_finished" from="MeleeAttackSprite2D" to="." method="attack_finished"]
