@@ -131,6 +131,7 @@ func _input(event):
 	if event is InputEventMouseButton and not attacking:
 		if (event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
 			trigger_charge_dash_attack()
+			$DashGhostSprite2D/DashAttackChargeUp.play()
 		elif(event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
 			trigger_dash_attack()
 			if dash_attack_charge <= dash_attack_ghost_delay_time or dash_attacking:
@@ -145,6 +146,8 @@ func _input(event):
 				
 				if not dash_attacking:
 					attack.hide()
+				else:
+					$DashGhostSprite2D/DashAttackWhoosh.play()
 				# Choose the starting position of the attack
 				attack.position = Vector2.ZERO
 				# Set the attack's direction to aim at the player

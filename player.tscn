@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://dk83fq7e0glm1"]
+[gd_scene load_steps=67 format=3 uid="uid://dk83fq7e0glm1"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_hn8pb"]
 [ext_resource type="Texture2D" uid="uid://ddec2rqjae272" path="res://art/playerSprites/runningBack/RedPandaRunBack0000.png" id="2_0oa2o"]
@@ -12,10 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://kwpkvjnf1c5r" path="res://art/playerGrey_walk2.png" id="4_qj6yo"]
 [ext_resource type="Texture2D" uid="uid://cl4wuxwaskeyl" path="res://art/playerSprites/runningBack/RedPandaRunBack0003.png" id="5_a4div"]
 [ext_resource type="Texture2D" uid="uid://bein5vq74o1mh" path="res://art/playerSprites/runningForward/RedPandaRunFront0003.png" id="5_lbh7i"]
+[ext_resource type="AudioStream" uid="uid://b4cojgt5d5qcv" path="res://sound/dash_attack_charge_up.wav" id="6_2qv7b"]
 [ext_resource type="Texture2D" uid="uid://dsbwh5bgynr0e" path="res://art/playerSprites/runningBack/RedPandaRunBack0004.png" id="6_5ogci"]
 [ext_resource type="Texture2D" uid="uid://1o4w62u2ew4t" path="res://art/playerSprites/runningForward/RedPandaRunFront0004.png" id="6_vnqk6"]
 [ext_resource type="Texture2D" uid="uid://m0wwspocmaen" path="res://art/playerSprites/runningForward/RedPandaRunFront0005.png" id="7_be41v"]
 [ext_resource type="Texture2D" uid="uid://p1jj6s6gbwc5" path="res://art/playerSprites/runningBack/RedPandaRunBack0005.png" id="7_d0cpl"]
+[ext_resource type="AudioStream" uid="uid://c8bosqsvrspcg" path="res://sound/dash_attack_whoosh.wav" id="7_wu8gd"]
 [ext_resource type="Texture2D" uid="uid://c1dsdcaqkrk2q" path="res://art/playerSprites/runningBack/RedPandaRunBack0006.png" id="8_a00yd"]
 [ext_resource type="Texture2D" uid="uid://bigs5le2ggo3" path="res://art/playerSprites/runningForward/RedPandaRunFront0006.png" id="8_v5ulb"]
 [ext_resource type="Texture2D" uid="uid://dfnuet8kncy4b" path="res://art/playerSprites/runningBack/RedPandaRunBack0007.png" id="9_imfwh"]
@@ -316,6 +318,14 @@ position = Vector2(9.53674e-07, 1.90735e-06)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_0i2dn")
 animation = &"Side"
+
+[node name="DashAttackChargeUp" type="AudioStreamPlayer" parent="DashGhostSprite2D"]
+stream = ExtResource("6_2qv7b")
+pitch_scale = 4.0
+
+[node name="DashAttackWhoosh" type="AudioStreamPlayer" parent="DashGhostSprite2D"]
+stream = ExtResource("7_wu8gd")
+pitch_scale = 4.0
 
 [node name="PlayerSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
