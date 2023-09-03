@@ -19,7 +19,7 @@ point_count = 8
 script = ExtResource("1_egcs4")
 mob_scene = ExtResource("2_pj8oe")
 bullet_scene = ExtResource("3_dnwi8")
-mob_cap = 50
+mob_cap = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
