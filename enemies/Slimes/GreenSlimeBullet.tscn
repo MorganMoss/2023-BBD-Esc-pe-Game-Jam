@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://45g0b4c13ki6"]
+
+[ext_resource type="Texture2D" uid="uid://62q3nlrqht7b" path="res://art/enemySprites/slime/Slime projectile.png" id="1_k3qmi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvxjo"]
+atlas = ExtResource("1_k3qmi")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rvaj"]
+atlas = ExtResource("1_k3qmi")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rvrd4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvxjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rvaj")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}]
+
+[node name="GreenSlimeBullet" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_rvrd4")
+animation = &"fly"
+frame_progress = 0.648447

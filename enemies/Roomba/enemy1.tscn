@@ -1,14 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca7br1mwbttbb"]
+[gd_scene load_steps=5 format=3 uid="uid://bshuetcvt2mvk"]
 
-[ext_resource type="Texture2D" uid="uid://brngbwcherx" path="res://art/enemySprites/enemy1Turnaround/Enemy1Turnaround0002.png" id="1_bkwfl"]
-[ext_resource type="Texture2D" uid="uid://d0yq6ui7kli14" path="res://art/enemySprites/enemy1Turnaround/Enemy1Turnaround0000.png" id="2_x61ti"]
-[ext_resource type="Texture2D" uid="uid://bk2lhr7tribj3" path="res://art/enemySprites/enemy1Turnaround/Enemy1Turnaround0001.png" id="3_g8mjk"]
+[ext_resource type="Texture2D" uid="uid://brngbwcherx" path="res://art/enemySprites/enemy1Turnaround/Enemy1Turnaround0002.png" id="1_7bp3b"]
+[ext_resource type="Texture2D" uid="uid://d0yq6ui7kli14" path="res://art/enemySprites/enemy1Turnaround/Enemy1Turnaround0000.png" id="2_0w6cs"]
+[ext_resource type="Texture2D" uid="uid://bk2lhr7tribj3" path="res://art/enemySprites/enemy1Turnaround/Enemy1Turnaround0001.png" id="3_62do2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2plu3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_bkwfl")
+"texture": ExtResource("1_7bp3b")
 }],
 "loop": true,
 "name": &"back",
@@ -16,7 +16,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_x61ti")
+"texture": ExtResource("2_0w6cs")
 }],
 "loop": true,
 "name": &"front",
@@ -24,7 +24,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_g8mjk")
+"texture": ExtResource("3_62do2")
 }],
 "loop": true,
 "name": &"side",

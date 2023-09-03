@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bt14cyhxfe2st"]
 
-[ext_resource type="Script" path="res://Bullet.gd" id="1_quwog"]
-[ext_resource type="Texture2D" uid="uid://boa0x1ahag8jc" path="res://art/attack-1-1.png" id="2_arswr"]
-[ext_resource type="Texture2D" uid="uid://cuiirqsv3tq45" path="res://art/attack-1-2.png" id="3_80cyx"]
-[ext_resource type="Texture2D" uid="uid://b6osf2el0u3ms" path="res://art/attack-1-3.png" id="4_yg1gx"]
-[ext_resource type="Texture2D" uid="uid://cnvhg05q4opw4" path="res://art/attack-1-4.png" id="5_liys5"]
+[ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_quwog"]
+[ext_resource type="Texture2D" uid="uid://n1wq2x7v5dur" path="res://art/attack-1-1.png" id="2_arswr"]
+[ext_resource type="Texture2D" uid="uid://bhb3iarbeie7j" path="res://art/attack-1-2.png" id="3_80cyx"]
+[ext_resource type="Texture2D" uid="uid://bsx3g22md24tn" path="res://art/attack-1-3.png" id="4_yg1gx"]
+[ext_resource type="Texture2D" uid="uid://dtly73125mwbo" path="res://art/attack-1-4.png" id="5_liys5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6vrts"]
 animations = [{
@@ -39,6 +39,7 @@ script = ExtResource("1_quwog")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 rotation = 3.14159
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_6vrts")

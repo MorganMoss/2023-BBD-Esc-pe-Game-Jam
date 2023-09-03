@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://46xslcbt81x3"]
 
-[ext_resource type="Script" path="res://Attack.gd" id="1_c6yxx"]
+[ext_resource type="Script" path="res://player/Attack.gd" id="1_c6yxx"]
 [ext_resource type="Texture2D" uid="uid://cfqffegx1womm" path="res://art/attack-2.png" id="2_enwuq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_viqc8"]

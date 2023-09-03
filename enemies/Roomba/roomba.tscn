@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://vdeh2o6vmudm"]
+
+[ext_resource type="Script" path="res://enemies/Roomba/Roomba.gd" id="1_nvujt"]
+[ext_resource type="Texture2D" uid="uid://d0yq6ui7kli14" path="res://art/enemySprites/enemy1Turnaround/Enemy1Turnaround0000.png" id="2_yjkpe"]
+[ext_resource type="Texture2D" uid="uid://bk2lhr7tribj3" path="res://art/enemySprites/enemy1Turnaround/Enemy1Turnaround0001.png" id="3_t03ax"]
+[ext_resource type="Texture2D" uid="uid://brngbwcherx" path="res://art/enemySprites/enemy1Turnaround/Enemy1Turnaround0002.png" id="4_f0pek"]
+[ext_resource type="Texture2D" uid="uid://dg3t62ia0fwji" path="res://art/enemySprites/enemy1Turnaround/Enemy1Turnaround0003.png" id="5_fcs0n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3wq5y"]
+radius = 20.0998
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6vrts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yjkpe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t03ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f0pek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fcs0n")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+collision_layer = 3
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_nvujt")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_3wq5y")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_6vrts")
+animation = &"walk"
+frame_progress = 0.281954
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
