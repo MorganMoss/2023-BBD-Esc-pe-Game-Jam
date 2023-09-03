@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvi42kvf5fbi4"]
+[gd_scene load_steps=11 format=3 uid="uid://dvi42kvf5fbi4"]
 
 [ext_resource type="Script" path="res://Level1.gd" id="1_egcs4"]
 [ext_resource type="PackedScene" uid="uid://vdeh2o6vmudm" path="res://mob.tscn" id="2_pj8oe"]
 [ext_resource type="PackedScene" uid="uid://bt14cyhxfe2st" path="res://bullet.tscn" id="3_dnwi8"]
+[ext_resource type="PackedScene" uid="uid://rcq5ru0sesxk" path="res://level2.tscn" id="4_q4enp"]
 [ext_resource type="PackedScene" uid="uid://dk83fq7e0glm1" path="res://player.tscn" id="4_t55es"]
 [ext_resource type="PackedScene" uid="uid://cflsdjksqt056" path="res://hud.tscn" id="5_mij4d"]
 [ext_resource type="AudioStream" uid="uid://c0aemsp6eecqf" path="res://art/gameover.wav" id="6_42nyg"]
@@ -19,7 +20,8 @@ point_count = 8
 script = ExtResource("1_egcs4")
 mob_scene = ExtResource("2_pj8oe")
 bullet_scene = ExtResource("3_dnwi8")
-mob_cap = 1
+level2_scene = ExtResource("4_q4enp")
+mob_cap = 20
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -64,6 +66,9 @@ wait_time = 0.1
 wait_time = 2.0
 one_shot = true
 
+[node name="WinTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(644, 504)
 
@@ -91,4 +96,5 @@ volume_db = -12.694
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="_ready"]
