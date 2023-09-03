@@ -101,11 +101,13 @@ func _process(delta):
 		handle_player_animation_direction(mouse_direction)		
 		handle_ghost_animation_direction(mouse_direction)
 	elif dash_attacking:
+		
 		player_sprite.modulate = Color(1,1,1)
 		if dash_attack_elapsed_distance <= dash_attack_distance:
 			velocity = dash_attack_direction * dash_attack_speed
 		else:
 			dash_attacking = false
+			player_hitbox.set_deferred("disabled", false)
 		handle_player_animation_direction(velocity)			
 	else:
 		is_charging_dash_attack = false
@@ -119,6 +121,7 @@ func _process(delta):
 	
 	
 func trigger_dash_attack():
+	player_hitbox.set_deferred("disabled", true)
 	played_charge_up_sound = false
 	is_charging_dash_attack = false
 	if dash_attack_ready:
