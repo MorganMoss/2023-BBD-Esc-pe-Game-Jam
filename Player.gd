@@ -129,21 +129,23 @@ func _input(event):
 			trigger_charge_dash_attack()
 		elif(event.button_index == MOUSE_BUTTON_LEFT and not event.pressed):
 			trigger_dash_attack()
-			
-			var direction = self.position.angle_to_point(event.position)
-			var attack = attack_scene.instantiate()
-			
-			melee_weapon_sprite.show()
-			melee_weapon_sprite.play("blackStick")
-			melee_weapon_sprite.rotation = direction-PI/2
-		
-			# Choose the starting position of the attack
-			attack.position = Vector2.ZERO
-			# Set the attack's direction to aim at the player
-			attack.rotation = direction
-			
-			# Spawn the attack
-			add_child(attack)
+			if dash_attack_charge <= dash_attack_ghost_delay_time or dash_attacking:
+				var direction = self.position.angle_to_point(event.position)
+				var attack = attack_scene.instantiate()
+				
+				melee_weapon_sprite.show()
+				melee_weapon_sprite.play("blackStick")
+				melee_weapon_sprite.rotation = direction-PI/2
+				
+				if not dash_attacking:
+					attack.hide()
+				# Choose the starting position of the attack
+				attack.position = Vector2.ZERO
+				# Set the attack's direction to aim at the player
+				attack.rotation = direction
+				
+				# Spawn the attack
+				add_child(attack)
 
 
 func _on_body_entered(body):
