@@ -5,14 +5,16 @@ extends Node
 @export var mob_cap: int
 
 var score
-var mob_count = 0
-var kill_count = 0
+var mob_count
+var kill_count
 
 signal on_game_over()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	score = 0
+	mob_count = 0
+	kill_count = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$Music.play()
