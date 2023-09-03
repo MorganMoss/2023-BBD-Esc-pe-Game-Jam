@@ -15,7 +15,7 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	get_node("/root/Main").on_attack(body)
+	get_node("/root/Level1").on_attack(body)
 
 
 func _on_attack_timer_timeout():
