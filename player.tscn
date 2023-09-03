@@ -259,7 +259,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"blackStick",
-"speed": 12.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -344,6 +344,7 @@ frame_progress = 1.0
 
 [node name="SwordSwoosh" type="AudioStreamPlayer" parent="MeleeAttackSprite2D"]
 stream = ExtResource("60_a8dm4")
+pitch_scale = 1.51
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="hit" from="." to="." method="kill"]

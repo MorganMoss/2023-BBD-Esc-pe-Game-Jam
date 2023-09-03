@@ -26,6 +26,7 @@ var attack_queued: bool = false
 var attack_queued_direction: float
 var played_charge_up_sound: bool = false
 var is_dead: bool = false
+var attack_reversed: bool = false
 
 func start(pos):
 	is_dead = false	
@@ -142,7 +143,6 @@ func attack_finished():
 	if attack_queued:
 		trigger_melee_attack(attack_queued_direction)
 		attack_queued = false
-		
 
 func trigger_next_attack(direction: float):
 	attack_queued_direction = direction
@@ -154,11 +154,14 @@ func trigger_melee_attack(direction: float):
 	melee_weapon_sprite.connect("animation_finished", attack.end_attack)
 	melee_weapon_sprite.show()
 	melee_weapon_sprite.play("blackStick")
+	attack_reversed = !attack_reversed
+	melee_weapon_sprite.flip_h = attack_reversed
 	melee_weapon_sprite.rotation = direction-PI/2
+	$MeleeAttackSprite2D/SwordSwoosh.pitch_scale = randf_range(0.5, 2)
 	$MeleeAttackSprite2D/SwordSwoosh.play()
 	
 	if not dash_attacking:
-		pass #attack.hide()
+		attack.hide()
 	else:
 		$DashGhostSprite2D/DashAttackWhoosh.play()
 	# Choose the starting position of the attack
